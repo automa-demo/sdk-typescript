@@ -1,6 +1,6 @@
 import { assert } from 'chai';
 
-import { verifyWebhook } from '../src/webhook';
+import { generateWebhookSignature, verifyWebhook } from '../src/webhook';
 
 suite('verifyWebhook', () => {
   test('returns false if secret is not a string', () => {
@@ -39,6 +39,16 @@ suite('verifyWebhook', () => {
       '77325902caca812dc259733aacd046b73817372c777b8d95b402647474516e13',
       {},
     );
+
+    assert.isTrue(result);
+  });
+
+  test('verifies the generated signature', () => {
+    // Generate signature
+    const signature = generateWebhookSignature('secret', {});
+
+    // Verify with the same parameters
+    const result = verifyWebhook('secret', signature, {});
 
     assert.isTrue(result);
   });
