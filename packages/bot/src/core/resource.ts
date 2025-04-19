@@ -1,4 +1,4 @@
-import type { Automa } from './index';
+import type { Automa } from '../client';
 
 export class APIResource {
   protected _client: Automa;
