@@ -5,8 +5,8 @@ import { pipeline } from 'node:stream/promises';
 import { x as extract } from 'tar';
 import { $ } from 'zx';
 
-import * as Core from '../core';
-import { APIResource } from '../resource';
+import { RequestOptions } from '../baseClient';
+import { APIResource } from '../core/resource';
 
 import { Task } from './shared';
 
@@ -27,7 +27,7 @@ export class Code extends APIResource {
    */
   async download(
     body: CodeDownloadParams,
-    options?: Core.RequestOptions<CodeDownloadParams>,
+    options?: RequestOptions<CodeDownloadParams>,
   ) {
     const response = await this._client.post<Readable, CodeDownloadParams>(
       '/code/download',
@@ -69,7 +69,7 @@ export class Code extends APIResource {
    */
   async propose(
     body: CodeProposeParams,
-    options?: Core.RequestOptions<CodeProposeRequestParams>,
+    options?: RequestOptions<CodeProposeRequestParams>,
   ) {
     const folder = this.path(body.task);
     let token: string | undefined;
