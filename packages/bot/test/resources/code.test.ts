@@ -83,7 +83,10 @@ suite('code', () => {
             method: 'POST',
             url: '/code/download',
             data: { task: { id: 28, token: 'invalid' } },
-            headers: { Accept: 'application/gzip' },
+            headers: {
+              Accept: 'application/gzip',
+              'Content-Type': 'application/json',
+            },
             responseType: 'stream',
           },
         ]);
@@ -131,7 +134,10 @@ suite('code', () => {
             method: 'POST',
             url: '/code/download',
             data: { task: { id: 28, token: 'abcdef' } },
-            headers: { Accept: 'application/gzip' },
+            headers: {
+              Accept: 'application/gzip',
+              'Content-Type': 'application/json',
+            },
             responseType: 'stream',
           },
         ]);
