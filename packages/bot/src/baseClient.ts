@@ -36,8 +36,8 @@ export abstract class APIClient {
     options?: RequestOptions<RequestData>,
   ) {
     return this.method<ResponseData, RequestData>('POST', uri, {
-      data,
       ...options,
+      data,
     });
   }
 
@@ -54,11 +54,11 @@ export abstract class APIClient {
       method,
       url: uri,
       baseURL: this.baseURL,
+      ...options,
       headers: {
         ...this.defaultHeaders(),
         ...options?.headers,
       },
-      ...options,
     });
   }
 }
